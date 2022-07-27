@@ -1,19 +1,27 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 
-export class Dishdetail extends Component {
-
+/*
 constructor(props) {
     super(props);
     this.state = {
         selectedDish: null,
     };
+    console.log("Dishdetail constructor invoked");
 }
 
-
+//lifecycle methods.
+componentDidMount(){
+  console.log("Dishdetail componentDidMount invoked");
+}
+componentDidUpdate(){
+  console.log("Dishdetail componentDidUpdate invoked");
+}
+*/
 
 //function
-renderDish(dish) {
+function RenderDish({dish}) //Passing dish as props in {} for converting class base to function base.
+{
   if (dish != null){
       return(
         <div className="col-12 col-md-5 m-1">
@@ -27,16 +35,16 @@ renderDish(dish) {
         </div>
       );
       }
-      else{
-        return(
-            <div></div>
-        );
-      }
+  else{
+    return(
+        <div></div>
+    );
+  }
 }
 
 
 //comment function
-renderComments(comments){
+function RenderComments({comments}){
   if (comments === null) {
     return (<div></div>);
   }
@@ -64,11 +72,11 @@ renderComments(comments){
   );
 }
 
+ 
+const Dishdetail = (props) => {
+  console.log("Dishdetail render method invoked");
 
-
-
-render() {
-    const dish=this.props.dish;
+    const dish = props.dish;
     if (dish === null) {
       return (<div></div>);
     }
@@ -76,13 +84,11 @@ render() {
       return (
         <div className="container">
           <div className="row">
-              {this.renderDish(dish)}
-              {this.renderComments(dish.comments)}
+              <RenderDish dish={props.dish}/>
+              <RenderComments comments={props.dish.comments}/>
           </div>
         </div>
       );
     }
-}
-
 
 export default Dishdetail;
