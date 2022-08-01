@@ -42,7 +42,7 @@ function RenderDish({dish}) //Passing dish as props in {} for converting class b
   }
 }
 
-
+/*
 //comment function
 function RenderComments({comments}){
   if (comments === null) {
@@ -70,7 +70,7 @@ function RenderComments({comments}){
       {com}
     </div>
   );
-}
+}*/
 
  
 const Dishdetail = (props) => {
@@ -85,7 +85,7 @@ const Dishdetail = (props) => {
         <div className="container">
           <div className="row">
               <RenderDish dish={props.dish}/>
-              <RenderComments comments={props.dish.comments}/>
+            {/*  <RenderComments comments={props.dish.comments}/> */}
           </div>
         </div>
       );
