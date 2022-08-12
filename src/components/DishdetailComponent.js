@@ -1,5 +1,6 @@
 import React from 'react';
-import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, CardTitle,  Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 /*
 constructor(props) {
@@ -18,6 +19,8 @@ componentDidUpdate(){
   console.log("Dishdetail componentDidUpdate invoked");
 }
 */
+
+
 
 //function
 function RenderDish({dish}) //Passing dish as props in {} for converting class base to function base.
@@ -42,7 +45,7 @@ function RenderDish({dish}) //Passing dish as props in {} for converting class b
   }
 }
 
-/*
+
 //comment function
 function RenderComments({comments}){
   if (comments === null) {
@@ -70,25 +73,36 @@ function RenderComments({comments}){
       {com}
     </div>
   );
-}*/
+}
 
  
 const Dishdetail = (props) => {
   console.log("Dishdetail render method invoked");
 
-    const dish = props.dish;
-    if (dish === null) {
-      return (<div></div>);
-    }
+  const dish = props.dish;
+  if (dish === null) {
+    return (<div></div>);
+  }
 
-      return (
-        <div className="container">
-          <div className="row">
-              <RenderDish dish={props.dish}/>
-            {/*  <RenderComments comments={props.dish.comments}/> */}
-          </div>
-        </div>
-      );
-    }
+  return (
+    <div className="container">
+      <div className="row">
+          <Breadcrumb>
+              <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
+              <BreadcrumbItem active>{props.dish.name}</BreadcrumbItem>
+          </Breadcrumb>
+          <div className="col-12">
+              <h3>{props.dish.name}</h3>
+              <hr />
+          </div>                
+      </div>
+
+      <div className="row">
+          <RenderDish dish={props.dish} />
+          <RenderComments comments={props.comments} />
+      </div>
+    </div>
+  );
+}
 
 export default Dishdetail;
